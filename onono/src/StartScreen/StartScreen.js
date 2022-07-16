@@ -3,13 +3,31 @@ import { useState } from 'react'
 import About from '../About/About.js'
 
 function StartScreen() {
+
+  const [active, setActive] = useState(0)
+  const menu = <div className="start-flex">
+                  <h1 className = "header noselect" onClick={id=>activePage(0)}>OnOnO D:</h1>
+                  <h3 className = "choices noselect" onClick={id=>activePage(1)}>How to Play</h3>
+                  <h3 className = "choices noselect" onClick={id=>activePage(2)}>Free Play</h3>
+                  <h3 className = "choices noselect" onClick={id=>activePage(3)}>Login</h3>
+                  <h3 className = "choices noselect" onClick={id=>activePage(4)}>About us</h3>
+                </div>
+
+  function activePage(num) {
+    setActive(num)
+  }
+
+  function returnPage() {
+    if (active == 0) {
+      return menu;
+    } else if (active == 4) {
+      return <About />
+    }
+  }
+
   return (
-    <div className="start-flex">
-      <h1 className = "header noselect">OnOnO D:</h1>
-      <h3 className = "choices noselect">How to Play</h3>
-      <h3 className = "choices noselect">Free Play</h3>
-      <h3 className = "choices noselect">Login</h3>
-      <h3 className = "choices noselect">About us</h3>
+    <div>
+      {returnPage()}
     </div>
   );
 }
