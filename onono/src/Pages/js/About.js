@@ -1,6 +1,6 @@
-import './About.css'
-import arrrex from './arrrex.jpg'
-import blingblingda from './blingblingda.jpg'
+import '../css/About.css'
+import arrrex from '../Utils/arrrex.jpg'
+import blingblingda from '../Utils/blingblingda.jpg'
 
 function About() {
     return (
