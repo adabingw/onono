@@ -3,31 +3,30 @@
  */
 
  import React from 'react'
- import './Board.css'
+ import './Tile.css'
  import wrap_mon from './wrap_mon.png'
  import maxresdefault from './maxresdefault.jpg'
  import hepl from './hepl.jpg'
  import {useState} from 'react'
  
  function Tile(props) {
-     let id = props.id
-     console.log(id)
      const [background, setBackground] = useState(props.src)
+     const [id, setId] = useState(props.id)
  
      function updateTile(id) {
          console.log("waku waku")
          if (id == 1) {
             console.log(id)
             setBackground(wrap_mon)
-            id = 2
+            setId(2)
          } else if (id == 2) {
             console.log(id)
             setBackground(maxresdefault)
-            id = 3
+            setId(3)
          } else {
             console.log(id)
             setBackground(hepl)
-            id = 1
+            setId(1)
          }
      }
  
