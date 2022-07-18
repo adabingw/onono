@@ -11,6 +11,7 @@ function Login(props) {
   const [user, loading, error] = useAuthState(auth);
   const [log, setLog] = useState(props.status)
   const navigate = useNavigate();
+  props.f("unfocused")
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen

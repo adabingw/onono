@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Profile(props) {
     const navigate = useNavigate();
-
+    props.f("unfocused")
     function handleLogout() {
         logout()
         props.update()
@@ -25,7 +25,7 @@ export default Profile
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import "./Dashboard.css";
+import "./Profile.css";
 import { auth, db, logout } from "../../Utils/Firebase.js";
 import { query, collection, getDocs, where } from "firebase/firestore";
 

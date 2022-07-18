@@ -1,7 +1,8 @@
 import React from 'react';
 import Board from './Board.js'
 
-function FreePlay() {
+function FreePlay(props) {
+  props.f("unfocused")
     return (
         <div className="FreePlay">
           <Board />

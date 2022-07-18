@@ -2,7 +2,8 @@ import './About.css'
 import arrrex from './pics/arrrex.jpg'
 import blingblingda from './pics/blingblingda.jpg'
 
-function About() {
+function About(props) {
+  props.f("unfocused")
     return (
         <div className="About">
           <h1 className="abouth1">About Uth!</h1>

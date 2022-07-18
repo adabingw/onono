@@ -57,16 +57,23 @@ function App(props) {
     if (current == "freeplay" && currentPage == "freeplay") {
       console.log("current: " + current)
       setOpenGame(true)
+      setFocus("unfocused")
     } else if (current == "login") {
       console.log(current)
       setOpenLog(true)
+      setFocus("unfocused")
     } else {
       setOpenLog(false)
       setOpenGame(false)
+      setFocus("unfocused")
     }
     console.log(current)
     console.log(openGame)
     console.log(openLog)
+  }
+
+  function changeFocus2(f) {
+    setFocus(f)
   }
 
   function handleCloseGame() {
@@ -92,7 +99,6 @@ function App(props) {
     console.log(login)
   }
 
-  const navigate = useNavigate();
   return (
     <div>
       <Router>
@@ -108,11 +114,11 @@ function App(props) {
           }
         </nav>
         <Routes>
-          <Route exact path="/freeplay" element={<FreePlay  />} />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="*" element={<ErrorPage />} />
-          <Route exact path="/login" element={<Login  update={handleLogin} />} />
-          <Route exact path="/profile" element={<Profile  update={handleLogout}/>} />
+          <Route exact path="/freeplay" element={<FreePlay f={changeFocus2}/>} />
+          <Route exact path="/about" element={<About f={changeFocus2}/>} />
+          <Route exact path="*" element={<ErrorPage f={changeFocus2}/>} />
+          <Route exact path="/login" element={<Login  update={handleLogin} f={changeFocus2}/>} />
+          <Route exact path="/profile" element={<Profile  update={handleLogout} f={changeFocus2}/>}/>
         </Routes>
       </Router>
       <Modal
@@ -125,7 +131,9 @@ function App(props) {
               fontSize: "15px", 
               fontFamily: 'Outfit',
               marginRight: "100px",
-            }} onClick={() => navigate('/freeplay')}>New Game?</Button>
+            }} >New Game?</Button>
+            {/* onClick={() => navigate('/freeplay')} */}
+            {/* ^ move this up when nav finished lol */}
           <Button
             style={{
               color: "#696969",
