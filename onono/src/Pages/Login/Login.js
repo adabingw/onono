@@ -17,9 +17,9 @@ function Login(props) {
       return;
     }
     if (user) {
-        console.log(props.update)
+        props.update()
         console.log(props.test)
-        navigate("/freeplay");
+        navigate("/profile");
     }
   }, [user, loading]);
 
