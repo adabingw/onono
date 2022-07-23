@@ -1,8 +1,8 @@
 import React from 'react';
 import './Tile.css';
-// import wrap_mon from './wrap_mon.png';
-// import maxresdefault from './maxresdefault.jpg';
-// import hepl from './hepl.jpg';
+import wrap_mon from './wrap_mon.png';
+import maxresdefault from './maxresdefault.jpg';
+import hepl from './hepl.jpg';
 import blank from '../../../src/Assets/blank.png';
 import blue from '../../../src/Assets/blue.png';
 import green from '../../../src/Assets/green.png';
@@ -25,7 +25,7 @@ function Tile(props) {
     } else {
       // console.log(id);
       setBackground(blank);
-      setId(0);
+      setId(1);
     }
   }
 

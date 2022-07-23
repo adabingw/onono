@@ -1,5 +1,5 @@
 /**
- * Includes the thing arreeeex wrote
+ * Includes the thing arrrrex wrote
  */
 
 function Solver(props) {

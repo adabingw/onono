@@ -4,12 +4,9 @@
 
 import React from 'react'
 import './Board.css'
-// import wrap_mon from './wrap_mon.png'
-// import maxresdefault from './maxresdefault.jpg'
-// import hepl from './hepl.jpg'
-import blank from '../../../src/Assets/blank.png';
-import blue from '../../../src/Assets/blue.png';
-import green from '../../../src/Assets/green.png';
+import wrap_mon from './wrap_mon.png'
+import maxresdefault from './maxresdefault.jpg'
+import hepl from './hepl.jpg'
 import Tile from './Tile.js'
 
 function Board(props) {
@@ -23,25 +20,25 @@ function Board(props) {
     tiles[i] = new Array(4);
     tiles_id[i] = new Array(4);
     for (var j = 0; j < tiles[i].length; j++) {
-      const num = Math.floor(3 * Math.random());
-      tiles_id[i][j] = num;
-      if (num == 0) {
-        tiles[i][j] = blank;
-      } else if (num == 1) {
-        tiles[i][j] = blue;
+      const num = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+      tiles_id[i][j] = num
+      if (num == 1) {
+        tiles[i][j] = hepl
+      } else if (num == 2) {
+        tiles[i][j] = wrap_mon
       } else {
-        tiles[i][j] = green;
+        tiles[i][j] = maxresdefault
       }
     }
   }
 
   function updateTileID(row, col, id) {
-    if (id == 0) {
-      tiles_id[row][col] = 1;
-    } else if (id == 1) {
-      tiles_id[row][col] = 2;
+    if (id == 1) {
+      tiles_id[row][col] = 2
+    } else if (id == 2) {
+      tiles_id[row][col] = 3
     } else {
-      tiles_id[row][col] = 0;
+      tiles_id[row][col] = 1
     }
   }
 

@@ -1,10 +1,10 @@
 /**
- * Includes the thing arreeeex wrote
+ * Includes the thing arrrrex wrote
  */
 
 function Solver(props) {
   const BLUE = 1;
-  const GREEN = 2;
+  const GREEN = 1;
 
   const size = props.size;
   const vals = props.vals;
