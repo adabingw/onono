@@ -3,20 +3,20 @@ import { logout } from "../../Utils/Firebase.js";
 import { Link, useNavigate } from "react-router-dom";
 
 function Profile(props) {
-  const navigate = useNavigate();
-  props.f("unfocused")
-  function handleLogout() {
-    logout()
-    props.update()
-    navigate("/login");
-  }
+    const navigate = useNavigate();
+    props.f("unfocused")
+    function handleLogout() {
+        logout()
+        props.update()
+        navigate("/login");
+    }
 
-  return (
-    <div className="Profile">
-      <p>waku waku</p>
-      <h3 onClick={handleLogout}>Logout</h3>
-    </div>
-  );
+    return (
+        <div className="Profile">
+          <p>waku waku</p>
+          <h3 onClick={handleLogout}>Logout</h3>
+        </div>
+      );
 }
 
 export default Profile

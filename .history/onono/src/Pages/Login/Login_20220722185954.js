@@ -18,9 +18,9 @@ function Login(props) {
       return;
     }
     if (user) {
-      props.update()
-      console.log(props.test)
-      navigate("/profile");
+        props.update()
+        console.log(props.test)
+        navigate("/profile");
     }
   }, [user, loading]);
 
