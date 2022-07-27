@@ -1,5 +1,5 @@
 .dashboard {
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: #dcdcdc;
+    background-color: #ffffff;
     padding: 30px;
   }
   .dashboard__btn {
@@ -17,9 +17,52 @@
     font-size: 18px;
     margin-top: 10px;
     border: none;
-    color: white;
-    background-color: black;
+    color: #696969;
+    background-color: #ffffff;
   }
+
+  .dashboard__btn:hover {
+    color: black;
+    cursor: pointer; 
+    font-weight: bold;
+  } 
+
   .dashboard div {
     margin-top: 7px;
   }
+
+.Logout:hover {
+  cursor: pointer;
+}
+
+.row {
+  display: flex; 
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.glow {
+  margin-left: 10px;
+  color: #5c8065;
+}
+
+.glow:hover {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.col {
+  display: flex; 
+  flex-direction: column;
+  padding-left: 15px;
+}
+
+.col-titles {
+  display:flex; 
+  justify-content: end;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 15px;
+  border-right: 1px solid #696969;
+}

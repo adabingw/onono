@@ -2,7 +2,9 @@ import React from 'react';
 import FreePlay from './Pages/FreePlay/FreePlay.js'
 import Profile from './Pages/Profile/Profile.js'
 import About from './Pages/About/About.js';
-import Login from './Pages/Login/Login.js';
+import Login from './Pages/Auth/Login.js';
+import Register from './Pages/Auth/Register.js';
+import Reset from './Pages/Auth/Reset.js';
 import ErrorPage from './Pages/ErrorPage';
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
@@ -10,16 +12,15 @@ import { useState, useEffect, useHistory } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import firebase from 'firebase/compat/app';
+import Leaderboard from './Pages/Leaderboard/Leaderboard.js';
 
 function App(props) {  
 
   const [focus, setFocus] = useState("focused")
   const [current, setCurrent] = useState("home")
-  const [prev, setPrev] = useState("home")
   const [openGame, setOpenGame] = useState(false)
   const [openLog, setOpenLog] = useState(false)
-  const [login, setLogin] = useState()
+  const [login, setLogin] = useState(false)
 
   const style = {
     position: 'absolute',
@@ -34,32 +35,14 @@ function App(props) {
     justifyContent: 'center',
   };
 
-  // useEffect(() => {
-  //   if (current == "freeplay" && prev == "freeplay") {
-  //     console.log("current: " + current)
-  //     setOpenGame(true)
-  //   } else if (current == "login") {
-  //     console.log(current)
-  //     setOpenLog(true)
-  //   } else {
-  //     setOpenLog(false)
-  //     setOpenGame(false)
-  //   }
-  //   console.log(current)
-  //   console.log(openGame)
-  //   console.log(openLog)
-  // }, [current, prev]);
-
   function changeFocus(f, currentPage) {
     setFocus(f)
     setCurrent(currentPage)
 
     if (current == "freeplay" && currentPage == "freeplay") {
-      console.log("current: " + current)
       setOpenGame(true)
       setFocus("unfocused")
     } else if (current == "login") {
-      console.log(current)
       setOpenLog(true)
       setFocus("unfocused")
     } else {
@@ -67,9 +50,6 @@ function App(props) {
       setOpenGame(false)
       setFocus("unfocused")
     }
-    console.log(current)
-    console.log(openGame)
-    console.log(openLog)
   }
 
   function changeFocus2(f) {
@@ -89,14 +69,11 @@ function App(props) {
   }
 
   const handleLogin = () => {
-    console.log("handleLogin clicked")
-    setLogin(false)
+    setLogin(true)
   }
 
   const handleLogout = () => {
-    console.log("handleLogout clicked")
-    setLogin(true)
-    console.log(login)
+    setLogin(false)
   }
 
   return (
@@ -107,9 +84,10 @@ function App(props) {
           <Link to="/freeplay" onClick={e=>changeFocus("unfocused", "freeplay")} className = {focus}> FreePlay </Link>
           <Link to="/about" onClick={e=>changeFocus("unfocused", "about")} className = {focus}> About </Link>
           <Link to="*" onClick={e=>changeFocus("unfocused", "error")} className = {focus}> Error </Link>
-          { //Check if message failed
-            (login == true)
-              ? <Link to="/login" onClick={e=>changeFocus("unfocused", "login")} className = {focus} test="1"> Login </Link>
+          <Link to="/leaderboard" onClick={e=>changeFocus("unfocused", "error")} className = {focus}> Leaderboard </Link>
+          { 
+            (login == false)
+              ? <Link to="/login" onClick={e=>changeFocus("unfocused", "login")} className = {focus}> Profile </Link>
               : <Link to="/profile" onClick={e=>changeFocus("unfocused", "profile")} className = {focus}> Profile </Link>
           }
         </nav>
@@ -119,6 +97,9 @@ function App(props) {
           <Route exact path="*" element={<ErrorPage f={changeFocus2}/>} />
           <Route exact path="/login" element={<Login  update={handleLogin} f={changeFocus2}/>} />
           <Route exact path="/profile" element={<Profile  update={handleLogout} f={changeFocus2}/>}/>
+          <Route exact path="/register" element={<Register/>}/>
+          <Route exact path="/reset" element={<Reset />}/>
+          <Route exact path="/leaderboard" element={<Leaderboard f={changeFocus2}/>}/>
         </Routes>
       </Router>
       <Modal
@@ -133,7 +114,7 @@ function App(props) {
               marginRight: "100px",
             }} >New Game?</Button>
             {/* onClick={() => navigate('/freeplay')} */}
-            {/* ^ move this up when nav finished lol */}
+            {/* ^ move this up when navigate() finished lol */}
           <Button
             style={{
               color: "#696969",

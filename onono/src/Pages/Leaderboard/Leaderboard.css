@@ -1,0 +1,19 @@
+.titles {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-elems {
+    display: flex; 
+    align-items: flex-start;
+    /* flex-direction: column; */
+}
+
+.cols-elements {
+    margin-right: 10px;
+    display: flex; 
+    flex-direction: column;
+    padding-left: 15px;
+}

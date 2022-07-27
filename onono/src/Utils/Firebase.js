@@ -1,4 +1,14 @@
+/**
+ * TODO: 
+ * - change email/name
+ * - view leaderboard
+ * - set name when signing in with email
+ * - register -> name
+ */
+
 import { initializeApp } from "firebase/app";
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore';
 import { getAnalytics } from "firebase/analytics";
 import {
     GoogleAuthProvider,
@@ -8,8 +18,7 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
-} from "firebase/auth";
-
+} from 'firebase/auth';
 import {
     getFirestore,
     query,
@@ -18,11 +27,10 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBj0BTTfwrGYB1KHdDFN-37CkWC1jLDkhs",
   authDomain: "onono-2dfd4.firebaseapp.com",
@@ -39,10 +47,24 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
+const addUser = async () => {
+  db.collection("UserScores").add({
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+  })
+  .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+  })
+  .catch((error) => {
+      console.error("Error adding document: ", error);
+  });
+}
 
-// Get a list of cities from your database
+const updateInfo = async (email, update) => {
+  db.collection("UserScores").doc(email).update({name: update});
+}
+
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
@@ -51,8 +73,9 @@ const signInWithGoogle = async () => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+      await firebase.addDoc(collection(db, "users"), {
         uid: user.uid,
+        score: 0,
         name: user.displayName,
         authProvider: "google",
         email: user.email,
@@ -65,51 +88,52 @@ const signInWithGoogle = async () => {
 };
 
 const logInWithEmailAndPassword = async (email, password) => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
 const registerWithEmailAndPassword = async (name, email, password) => {
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      const user = res.user;
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        name,
-        authProvider: "local",
-        email,
-      });
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      name,
+      score: 0,
+      authProvider: "local",
+      email,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
-  const sendPasswordReset = async (email) => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert("Password reset link sent!");
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
+const sendPasswordReset = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("Password reset link sent!");
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
-  const logout = () => {
-    signOut(auth);
-  };
+const logout = () => {
+  signOut(auth);
+};
 
-  export {
-    auth,
-    db,
-    signInWithEmailAndPassword,
-    signInWithGoogle,
-    logInWithEmailAndPassword,
-    registerWithEmailAndPassword,
-    sendPasswordReset,
-    logout,
-  };
+export {
+  auth,
+  db,
+  signInWithEmailAndPassword,
+  signInWithGoogle,
+  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
+  sendPasswordReset,
+  logout,
+};

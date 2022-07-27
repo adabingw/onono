@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from "../../Utils/Firebase.js";
+} from "../../Utils/Firebase.js"; 
 import "./Register.css";
 
 function Register() {
@@ -13,18 +13,25 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [user, loading, error] = useAuthState(auth);
-  const history = useHistory();
+  const navigate = useNavigate();
+
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
   };
+
   useEffect(() => {
     if (loading) return;
-    if (user) history.replace("/dashboard");
+    if (user) navigate('/dashboard');
   }, [user, loading]);
+
   return (
     <div className="register">
+      {/* <h1 className="logo">OnOnO D:</h1> */}
       <div className="register__container">
+      <div className="title">
+          Register for account
+        </div>
         <input
           type="text"
           className="register__textBox"
@@ -56,7 +63,7 @@ function Register() {
           Register with Google
         </button>
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account? <Link to="/login">Login</Link> now.
         </div>
       </div>
     </div>

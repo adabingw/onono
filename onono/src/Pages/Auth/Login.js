@@ -1,7 +1,7 @@
 import './Login.css'
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithEmailAndPassword, signInWithGoogle } from "../../Utils/Firebase.js";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../Utils/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login(props) {
@@ -19,32 +19,32 @@ function Login(props) {
     }
     if (user) {
         props.update()
-        console.log(props.test)
         navigate("/profile");
     }
   }, [user, loading]);
 
   return (
     <div className="login">
+      {/* <h1 className="logo">OnOnO D:</h1>  */}
       <div className="login__container">
+        <div className="title">
+          Login
+        </div>
         <input
           type="text"
           className="login__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
+          placeholder="E-mail Address" />
         <input
           type="password"
           className="login__textBox"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
+          placeholder="Password" />
         <button
           className="login__btn"
-          onClick={() => signInWithEmailAndPassword(email, password)}
-        >
+          onClick={() => logInWithEmailAndPassword(email, password)} >
           Login
         </button>
         <button className="login__btn login__google" onClick={signInWithGoogle}>

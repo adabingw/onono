@@ -2,7 +2,7 @@
  * Returns Board component that includes tiles
  */
 
- import React from 'react'
+ import React from 'react' 
  import './Tile.css'
  import wrap_mon from './wrap_mon.png'
  import maxresdefault from './maxresdefault.jpg'
