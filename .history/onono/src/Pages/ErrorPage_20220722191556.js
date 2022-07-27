@@ -7,13 +7,8 @@ function ErrorPage(props) {
     <div>
       <h1>Error D:</h1>
       <h3>The page may not have loaded properly, but here's a cute Nezuko gif for you :3</h3>
-      {/* center the image below */}
-      <img src={nezuko} style={{
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "50%"
-      }} />
+      {/* <img src={nezuko} alt="nezuko" /> */}
+      <img src={nezuko} style={{}} />
     </div>
   );
 }

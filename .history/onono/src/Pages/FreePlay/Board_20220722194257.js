@@ -39,9 +39,9 @@ function Board(props) {
     if (id == 0) {
       tiles_id[row][col] = 1;
     } else if (id == 1) {
-      tiles_id[row][col] = 2;
+      tiles_id[row][col] = 0
     } else {
-      tiles_id[row][col] = 0;
+      tiles_id[row][col] = 1
     }
   }
 

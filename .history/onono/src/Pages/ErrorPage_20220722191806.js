@@ -13,7 +13,8 @@ function ErrorPage(props) {
         marginLeft: "auto",
         marginRight: "auto",
         width: "50%"
-      }} />
+      }} /> 
+      />
     </div>
   );
 }

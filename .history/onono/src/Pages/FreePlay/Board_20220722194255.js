@@ -38,10 +38,10 @@ function Board(props) {
   function updateTileID(row, col, id) {
     if (id == 0) {
       tiles_id[row][col] = 1;
-    } else if (id == 1) {
-      tiles_id[row][col] = 2;
+    } else if (id == 2) {
+      tiles_id[row][col] = 0
     } else {
-      tiles_id[row][col] = 0;
+      tiles_id[row][col] = 1
     }
   }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import './Tile.css';
-// import wrap_mon from './wrap_mon.png';
-// import maxresdefault from './maxresdefault.jpg';
-// import hepl from './hepl.jpg';
+import wrap_mon from './wrap_mon.png';
+import maxresdefault from './maxresdefault.jpg';
+import hepl from './hepl.jpg';
 import blank from '../../../src/Assets/blank.png';
 import blue from '../../../src/Assets/blue.png';
 import green from '../../../src/Assets/green.png';
@@ -17,15 +17,15 @@ function Tile(props) {
     if (id == 0) {
       // console.log(id);
       setBackground(blue);
-      setId(1);
+      setId(2);
     } else if (id == 1) {
       // console.log(id);
-      setBackground(green);
-      setId(2);
+      setBackground(blue);
+      setId(3);
     } else {
       // console.log(id);
-      setBackground(blank);
-      setId(0);
+      setBackground(green);
+      setId(1);
     }
   }
 

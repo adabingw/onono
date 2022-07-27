@@ -1,11 +1,10 @@
 import React from 'react';
 import './Tile.css';
-// import wrap_mon from './wrap_mon.png';
-// import maxresdefault from './maxresdefault.jpg';
-// import hepl from './hepl.jpg';
+import wrap_mon from './wrap_mon.png';
+import maxresdefault from './maxresdefault.jpg';
+import hepl from './hepl.jpg';
 import blank from '../../../src/Assets/blank.png';
-import blue from '../../../src/Assets/blue.png';
-import green from '../../../src/Assets/green.png';
+import 
 import { useState } from 'react';
 
 function Tile(props) {
@@ -14,18 +13,18 @@ function Tile(props) {
 
   function updateTile(id) {
     // console.log("waku waku");
-    if (id == 0) {
+    if (id == 1) {
       // console.log(id);
-      setBackground(blue);
-      setId(1);
-    } else if (id == 1) {
-      // console.log(id);
-      setBackground(green);
+      setBackground(wrap_mon);
       setId(2);
+    } else if (id == 2) {
+      // console.log(id);
+      setBackground(maxresdefault);
+      setId(3);
     } else {
       // console.log(id);
-      setBackground(blank);
-      setId(0);
+      setBackground(hepl);
+      setId(1);
     }
   }
 

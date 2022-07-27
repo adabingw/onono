@@ -3,11 +3,11 @@ import Board from './Board.js'
 
 function FreePlay(props) {
   props.f("unfocused")
-  return (
-    <div className="FreePlay">
-      <Board />
-    </div>
-  );
+    return (
+        <div className="FreePlay">
+          <Board />
+        </div>
+      );
 }
 
 export default FreePlay
