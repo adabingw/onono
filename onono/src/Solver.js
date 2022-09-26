@@ -552,3 +552,5 @@ function Solver(props) {
     return toFill;
   }
 }
+
+export default Solver;
